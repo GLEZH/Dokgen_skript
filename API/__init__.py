@@ -1,6 +1,7 @@
-from typing import Callable
-from starlette import Starlette
-from Fast import APIRouter
+from typing import Callable, Any
+import starlette as Starlette
+from fastapi import APIRouter
+from starlette.types import Scope, Receive, Send
 
 
 class FastApi(Starlette):
