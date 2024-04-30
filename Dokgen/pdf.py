@@ -24,14 +24,14 @@ class PdfFromTemplate:
         self.Date_of_Birth = Date_of_Birth
 
     def FromHtml(self):
-        env = Environment(loader=FileSystemLoader('.'))
+        env = Environment(loader=FileSystemLoader('..'))
         template = env.get_template("Akt_rabot.html")
         pdf_template = template.render(
             dict(AktNumber=self.AktNumber, NumberZ=self.NumberZ, RamochniyDataNum=self.RamochniyDataNum,
                  DataST=self.DataST, WorkerName=self.WorkerName, InnNumber=self.InnNumber, DataStatr=self.DataStatr,
                  DataStop=self.DataStop, DescriptionOfWork=self.DescriptionOfWork, TotalCoast=self.TotalCoast,
                  TotalCostText=self.TotalCostText, Date_of_Birth=self.Date_of_Birth))
-        pdfkit.from_string(pdf_template, 'out.pdf', configuration=config)
+        pdfkit.from_string(pdf_template, '../out.pdf', configuration=config)
 
     pass
 
