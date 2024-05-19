@@ -20,15 +20,27 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
+# тестовая модель
 class STaskAdd(BaseModel):
     name: str
     description: str
 
 
+# генерация акта
+class DocAktGenAdd(BaseModel):
+    name: str
+    description: str
+
+
+# наследование класса staskadd, непрямое наследование класса BaseModel
 class STask(STaskAdd):
     id: int
     model_config = ConfigDict(from_attributes=True)
 
+
+class DocAktGen(DocAktGenAdd):
+    id: int
+    model_config = ConfigDict(from_attributes=True)
 
 @app.get("/")
 async def home():
@@ -40,4 +52,6 @@ async def add_task(task: STaskAdd = Depends()):
     return {"data": task}
 
 
-
+@app.post("/docgen")
+async def gen_akt(task: DocAktGenAdd = Depends()):
+    return {"data": task}

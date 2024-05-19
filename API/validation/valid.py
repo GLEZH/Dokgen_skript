@@ -1,5 +1,5 @@
 
-from main import app
+from main import app, STaskAdd
 
 
 @app.post("/")
